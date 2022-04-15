@@ -1,6 +1,7 @@
 name: aws_encryption_sdk
 description: An implementation of the AWS Encryption SDK in Dart
 version: 0.1.0
+repository: https://github.com/richardheap/aws_encryption_sdk
 
 environment:
   sdk: '>=2.12.0 <3.0.0'

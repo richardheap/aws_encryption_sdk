@@ -173,5 +173,5 @@ The Java implementation contains the follow Notice:
 
 Please file feature requests and bugs at the [issue tracker][tracker].
 
-[tracker]: http://example.com/issues/replaceme
+[tracker]: https://github.com/richardheap/aws_encryption_sdk/issues
 [javaImpl]: https://github.com/aws/aws-encryption-sdk-java
