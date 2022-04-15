@@ -72,6 +72,4 @@ class KeyBlob extends EncryptedDataKey {
       throw BadCiphertextException('invalid utf8 in key blob');
     }
   }
-
-
 }

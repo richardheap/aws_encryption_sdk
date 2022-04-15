@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:aws_encryption_sdk/src/util/arn.dart';
 import 'package:test/test.dart';
 

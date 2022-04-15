@@ -10,6 +10,8 @@ import 'material/default_materials_manager.dart';
 import 'model/ciphertext_headers.dart';
 import 'util/reader.dart';
 
+/// The reusable main engine class. Provides the ability to override the
+/// defaults for encryption suite and frame size
 class AwsCrypto {
   /// Constructs an instance of the engine, using the defaults.
   ///
@@ -31,7 +33,7 @@ class AwsCrypto {
         _encryptionFrameSize = encryptionFrameSize,
         _maxEncryptedDataKeys = maxEncryptedDataKeys {
     if (_encryptionFrameSize < 512) {
-      throw ArgumentError(' minimum frame size is 512');
+      throw ArgumentError('minimum frame size is 512');
     }
   }
 
@@ -188,7 +190,9 @@ class AwsCrypto {
 
     if (forbidSignedCiphertext &&
         headers.cryptoAlgorithm.trailingSignatureLength > 0) {
-      throw AwsCryptoException('Ciphertext is signed, but not allowed',);
+      throw AwsCryptoException(
+        'Ciphertext is signed, but not allowed',
+      );
     }
 
     final decryptionHandler = DecryptionHandler(
