@@ -1,0 +1,22 @@
+# Defines a default set of lint rules enforced for projects at Google. For
+# details and rationale, see
+# https://github.com/dart-lang/pedantic#enabled-lints.
+
+include: package:lints/recommended.yaml
+
+# For lint rules and documentation, see http://dart-lang.github.io/linter/lints.
+
+linter:
+  rules:
+    - prefer_single_quotes
+    - prefer_relative_imports
+    - unnecessary_lambdas
+    - avoid_slow_async_io
+    - always_declare_return_types
+    - omit_local_variable_types
+    - unawaited_futures
+    - package_api_docs
+
+# analyzer:
+#   exclude:
+#     - path/to/excluded/files/**
