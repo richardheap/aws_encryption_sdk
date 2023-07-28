@@ -4,7 +4,7 @@ description: >
   Encrypt and decrypt data using AWS KMS, AES and RSA keys.
   Interoperates with the Java, C and Python implementations.
 
-version: 0.1.1
+version: 1.0.0
 repository: https://github.com/richardheap/aws_encryption_sdk
 
 environment:
