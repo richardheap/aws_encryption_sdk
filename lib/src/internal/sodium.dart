@@ -11,6 +11,8 @@ class LibSodium {
       _libSodium = DynamicLibrary.open('C:\\Windows\\System32\\libsodium.dll');
     } else if (Platform.isLinux) {
       _libSodium = DynamicLibrary.open('/usr/lib64/libsodium.so.23');
+    } else if (Platform.isMacOS) {
+      _libSodium = DynamicLibrary.open('/usr/local/lib/libsodium.dylib');
     } else {
       throw UnsupportedError('operating system not supported');
     }
@@ -133,27 +135,27 @@ class LibSodium {
     Pointer<Uint8> k,
   ) _encrypt = _libSodium.lookupFunction<
       Int32 Function(
-    Pointer<Uint8>,
-    Pointer<Uint64>,
-    Pointer<Uint8>,
-    Uint64,
-    Pointer<Uint8>,
-    Uint64,
-    Pointer<Uint8>,
-    Pointer<Uint8>,
-    Pointer<Uint8>,
-  ),
+        Pointer<Uint8>,
+        Pointer<Uint64>,
+        Pointer<Uint8>,
+        Uint64,
+        Pointer<Uint8>,
+        Uint64,
+        Pointer<Uint8>,
+        Pointer<Uint8>,
+        Pointer<Uint8>,
+      ),
       int Function(
-    Pointer<Uint8>,
-    Pointer<Uint64>,
-    Pointer<Uint8>,
-    int,
-    Pointer<Uint8>,
-    int,
-    Pointer<Uint8>,
-    Pointer<Uint8>,
-    Pointer<Uint8>,
-  )>('crypto_aead_aes256gcm_encrypt');
+        Pointer<Uint8>,
+        Pointer<Uint64>,
+        Pointer<Uint8>,
+        int,
+        Pointer<Uint8>,
+        int,
+        Pointer<Uint8>,
+        Pointer<Uint8>,
+        Pointer<Uint8>,
+      )>('crypto_aead_aes256gcm_encrypt');
 
   late final int Function(
     Pointer<Uint8> m,
@@ -167,27 +169,27 @@ class LibSodium {
     Pointer<Uint8> k,
   ) _decrypt = _libSodium.lookupFunction<
       Int32 Function(
-    Pointer<Uint8>,
-    Pointer<Uint64>,
-    Pointer<Uint8>,
-    Pointer<Uint8>,
-    Uint64,
-    Pointer<Uint8>,
-    Uint64,
-    Pointer<Uint8>,
-    Pointer<Uint8>,
-  ),
+        Pointer<Uint8>,
+        Pointer<Uint64>,
+        Pointer<Uint8>,
+        Pointer<Uint8>,
+        Uint64,
+        Pointer<Uint8>,
+        Uint64,
+        Pointer<Uint8>,
+        Pointer<Uint8>,
+      ),
       int Function(
-    Pointer<Uint8>,
-    Pointer<Uint64>,
-    Pointer<Uint8>,
-    Pointer<Uint8>,
-    int,
-    Pointer<Uint8>,
-    int,
-    Pointer<Uint8>,
-    Pointer<Uint8>,
-  )>('crypto_aead_aes256gcm_decrypt');
+        Pointer<Uint8>,
+        Pointer<Uint64>,
+        Pointer<Uint8>,
+        Pointer<Uint8>,
+        int,
+        Pointer<Uint8>,
+        int,
+        Pointer<Uint8>,
+        Pointer<Uint8>,
+      )>('crypto_aead_aes256gcm_decrypt');
 
   var _bufferSize = 66000;
   late Pointer<Uint8> _inputBuffer;

@@ -113,6 +113,7 @@ It looks for the following files:
 | --- | --- |
 | Windows | C:\Windows\System32\libsodium.dll |
 | Linux | /usr/lib64/libsodium.so.23 |
+| macOS | /usr/local/lib/libsodium.dylib |
 
 ### Examples
 
