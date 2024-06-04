@@ -33,7 +33,7 @@ class RawAesKeyring extends Keyring {
     WrappingAlgorithm wrappingAlgorithm,
   ) : super(namespace, name) {
     _keyCipher = AesKeyCipher(key.sublist(0));
-    _keyNameBytes = utf8.encode(name) as Uint8List;
+    _keyNameBytes = utf8.encode(name);
     if (key.length != wrappingAlgorithm.keySizeBytes) {
       throw ArgumentError(
         'AES key length does not match wrapping algorithm',
@@ -118,7 +118,7 @@ class AesKeyCipher extends PointyKeyCipher {
       ..add(spec);
 
     return KeyBlob(
-      utf8.encode(keyNamespace) as Uint8List,
+      utf8.encode(keyNamespace),
       providerInfo.toBytes(),
       encryptedKey,
     );
@@ -130,7 +130,7 @@ class AesKeyCipher extends PointyKeyCipher {
     final String keyName,
     final Map<String, String> encryptionContext,
   ) {
-    final keyNameBytes = utf8.encode(keyName) as Uint8List;
+    final keyNameBytes = utf8.encode(keyName);
     final providerInfo = edk.providerInformation;
     if (providerInfo.length != keyNameBytes.length + 20) {
       throw AwsCryptoException(

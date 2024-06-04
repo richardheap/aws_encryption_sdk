@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:typed_data';
 
 abstract class Reader {
-  FutureOr<Uint8List> read(int length, [allowShort = false]);
+  FutureOr<Uint8List> read(int length, [bool allowShort = false]);
 
   int get available;
 
@@ -27,7 +27,7 @@ class BufferReader extends Reader {
   }
 
   @override
-  FutureOr<Uint8List> read(int length, [allowShort = false]) {
+  FutureOr<Uint8List> read(int length, [bool allowShort = false]) {
     if (length < 0) {
       throw ArgumentError('negative read request');
     }
@@ -61,11 +61,9 @@ class HashingReader extends Reader {
   int get available => _reader.available;
 
   @override
-  FutureOr<Uint8List> read(int length, [allowShort = false]) async {
+  FutureOr<Uint8List> read(int length, [bool allowShort = false]) async {
     final buf = await _reader.read(length, allowShort);
-    if (_hashFunction != null) {
-      _hashFunction!(buf);
-    }
+    _hashFunction?.call(buf);
     return buf;
   }
 
@@ -113,7 +111,7 @@ class StreamReader extends Reader {
   }
 
   @override
-  Future<Uint8List> read(int length, [allowShort = false]) async {
+  Future<Uint8List> read(int length, [bool allowShort = false]) async {
     if (length < 0) {
       throw ArgumentError('negative read request');
     }

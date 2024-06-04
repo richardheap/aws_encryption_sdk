@@ -25,7 +25,7 @@ abstract class MaterialsManager {
 }
 
 class DefaultMaterialsManager extends MaterialsManager {
-  DefaultMaterialsManager(Keyring keyring) : super(keyring);
+  DefaultMaterialsManager(super.keyring);
 
   //This operation will add a key-value pair to the encryption context included in the request using the key aws-crypto-public-key. If the encryption context included in the request already contains the aws-crypto-public-key key, this operation MUST fail rather than overwrite the associated value.
   //

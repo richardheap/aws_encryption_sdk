@@ -26,14 +26,18 @@ class AwsKmsKeyring extends Keyring {
   /// Constructs a [Keyring] for an AWS KMS symmetric key.
   ///
   /// Supply the full ARN (vs. id, etc.) of the AWS key in [_arn].
-  AwsKmsKeyring(this._arn)
-      : _region = Arn.fromString(_arn).region,
+  ///
+  /// If [credentials] is supplied, the KMS client uses those to authenticate.
+  /// Otherwise, it looks first for environment variables, and then in
+  /// _home_/.aws/credentials. AFAIK it does _not_ search any EC2 roles.
+  AwsKmsKeyring(this._arn, {AwsClientCredentials? credentials})
+      : _credentials = credentials,
+        _region = Arn.fromString(_arn).region,
         super('aws-kms', '');
 
-  // todo credential options
-
-  final String _region;
   final String _arn; // todo - allow list?
+  final AwsClientCredentials? _credentials;
+  final String _region;
 
   @override
   FutureOr<Uint8List> onDecrypt(
@@ -46,7 +50,7 @@ class AwsKmsKeyring extends Keyring {
     for (final edk in encryptedDataKeys) {
       try {
         if (edk.providerId == namespace && edk.providerInfoString == _arn) {
-          final kms = KMS(region: _region);
+          final kms = KMS(region: _region, credentials: _credentials);
 
           final response = await kms.decrypt(
             ciphertextBlob: edk.encryptedDataKey,
@@ -82,12 +86,12 @@ class AwsKmsKeyring extends Keyring {
     kms.close();
 
     if (response.ciphertextBlob == null) {
-      return null;
+      return;
     }
 
     materials.encryptedDataKeys.add(KeyBlob(
-      utf8.encode(namespace) as Uint8List,
-      utf8.encode(response.keyId ?? _arn) as Uint8List,
+      utf8.encode(namespace),
+      utf8.encode(response.keyId ?? _arn),
       response.ciphertextBlob!,
     ));
   }

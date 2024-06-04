@@ -101,8 +101,8 @@ class RawRsaKeyring extends Keyring {
       final ek = _cipher(true).process(materials.plaintextDataKey!);
 
       materials.encryptedDataKeys.add(KeyBlob(
-        utf8.encode(namespace) as Uint8List,
-        utf8.encode(name) as Uint8List,
+        utf8.encode(namespace),
+        utf8.encode(name),
         ek,
       ));
     }

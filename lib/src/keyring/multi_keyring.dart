@@ -30,7 +30,7 @@ class MultiKeyring extends Keyring {
   })  : _generatorKeyring = generatorKeyring,
         _childKeyrings = childKeyrings,
         super('', '') {
-    if (generatorKeyring == null && (childKeyrings).isEmpty) {
+    if (generatorKeyring == null && childKeyrings.isEmpty) {
       throw ArgumentError('no key rings supplied');
     }
   }

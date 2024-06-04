@@ -38,7 +38,7 @@ class CommittedKey {
       ..init(HkdfParameters(dataKey, commitmentLength, nonce))
       ..deriveKey(_commitLabel, 0, commitment, 0);
 
-    final deriveKeyLabel = utf8.encode('__DERIVEKEY') as Uint8List;
+    final deriveKeyLabel = utf8.encode('__DERIVEKEY');
     final algId = algo.value;
     deriveKeyLabel[0] = (algId >> 8) & 0xff;
     deriveKeyLabel[1] = algId & 0xff;
@@ -57,7 +57,7 @@ class CommittedKey {
 
   Uint8List get commitment => _commitment;
 
-  static final _commitLabel = utf8.encode('COMMITKEY') as Uint8List;
+  static final _commitLabel = utf8.encode('COMMITKEY');
 
   final Uint8List _ek;
   final Uint8List _commitment;

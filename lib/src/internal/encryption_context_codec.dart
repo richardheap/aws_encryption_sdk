@@ -32,8 +32,8 @@ Uint8List serializeEncryptionContext(Map<String, String>? encryptionContext) {
       );
     }
 
-    final key = utf8.encode(entry.key) as Uint8List;
-    final value = utf8.encode(entry.value) as Uint8List;
+    final key = utf8.encode(entry.key);
+    final value = utf8.encode(entry.value);
 
     if (key.length > _shortMax || value.length > _shortMax) {
       throw AwsCryptoException(

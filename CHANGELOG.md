@@ -1,3 +1,9 @@
+## 1.1.0
+
+- Updated dependencies
+- Remove unnecessary casts
+- Support AWS KMS credentials passed to constructor
+
 ## 1.0.0
 
 - Formally updated to support Dart 3

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:typed_data';
 
 import 'package:aws_encryption_sdk/aws_encryption_sdk.dart';
 import 'package:aws_encryption_sdk/src/util/random.dart';
@@ -14,7 +13,7 @@ void main() async {
   final hello = 'Hello World';
 
   // converted to bytes
-  final data = utf8.encode(hello) as Uint8List;
+  final data = utf8.encode(hello);
 
   // Instantiate an instance of the library, with the defaults
   final awsCrypto = AwsCrypto();

@@ -4,11 +4,11 @@ description: >
   Encrypt and decrypt data using AWS KMS, AES and RSA keys.
   Interoperates with the Java, C and Python implementations.
 
-version: 1.0.0
+version: 1.1.0
 repository: https://github.com/richardheap/aws_encryption_sdk
 
 environment:
-  sdk: '>=2.18.0 <4.0.0'
+  sdk: '>=3.0.0 <4.0.0'
 
 dependencies:
   aws_kms_api: ^2.0.0
@@ -16,8 +16,8 @@ dependencies:
   pointycastle: ^3.7.3
 
 dev_dependencies:
-  basic_utils: ^4.5.2
-  lints: ^2.1.1
+  basic_utils: ^5.0.0
+  lints: ^4.0.0
   test: ^1.20.1
 
 false_secrets:
